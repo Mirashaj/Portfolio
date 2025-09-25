@@ -6,47 +6,77 @@ section, main, header, nav, div, .container {
 .cursor, .cursor-follower {
   opacity: 1 !important;
   visibility: visible !important;
-  display: block !important;
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0; /* remove boxed padding */
+  background: transparent; /* ensure no box */
 }
-/* ============= GLOBAL STYLES ============= */
-* {
-  margin: 0;
+
+.contact-links {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 18px;
+  align-items: center;
+}
+
+/* Inline unboxed icon links */
+.contact-link {
+  color: var(--primary-color); /* cyan by default */
+  background: transparent;
   padding: 0;
-  box-sizing: border-box;
+  border-radius: 0;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.12s ease, color 0.12s ease;
 }
 
-:root {
-  --primary-color: #00f5ff;
-  --secondary-color: #ff6b6b;
-  --accent-color: #4ecdc4;
-  --bg-dark: #0a0a0a;
-  --bg-darker: #050505;
-  --text-light: #ffffff;
-  --text-gray: #b0b0b0;
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #00f5ff 0%, #4ecdc4 100%);
-  --gradient-3: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
+.contact-link:hover {
+  transform: translateY(-4px);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-dark);
+.contact-message {
+  margin-top: 8px;
   color: var(--text-light);
-  overflow: visible !important;
-  cursor: none !important;
+  font-size: 0.95rem;
 }
 
-a, button, .btn, .nav-link, .terminal-toggle, .project-link, .social-link, .contact-item, .skill, .project-card, input, textarea, select {
-  cursor: none !important;
-  pointer-events: auto !important;
+.contact-item i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
 }
 
-/* Forza cursor none su tutti gli elementi */
-* {
+/* Strong overrides: icons must stay cyan and must not get a background overlay on hover */
+.contact-links .contact-link,
+.contact-links .contact-link svg,
+.contact-links .contact-link .contact-svg {
+  color: var(--primary-color) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.contact-links .contact-link:hover,
+.contact-links .contact-link:focus {
+  background: transparent !important;
+  color: var(--primary-color) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: none !important;
+}
+
+/* Larger SVG icons in contact area */
+.contact-svg {
+  width: 700px; 
+  height: 700px;
+  display: inline-block;
+}
+
+@media (min-width: 900px) {
+  .contact-svg {
+    width: 700px;
+    height: 700px;
+  }
+}
   cursor: none !important;
 }
 
@@ -391,6 +421,23 @@ body.matrix-mode #navbar {
   position: relative;
 }
 
+/* Hero interactive canvas placed behind the content */
+#hero-canvas {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0; /* behind .hero-content which has z-index:2 */
+  pointer-events: none; /* don't intercept mouse events */
+}
+
+/* Ensure hero content sits above canvas */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
 .hero-text h1 {
   font-size: 4rem;
   margin-bottom: 20px;
@@ -501,6 +548,39 @@ body.matrix-mode #navbar {
   background: var(--gradient-2);
   color: white;
   transform: translateY(-2px);
+}
+
+/* Contact area icons and message */
+.contact-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.contact-link {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-gray);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1.05rem;
+}
+
+.contact-link:hover {
+  background: var(--gradient-2);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.contact-message {
+  margin-top: 12px;
+  color: var(--text-light);
+  font-size: 0.95rem;
 }
 
 .scroll-indicator {
@@ -1000,27 +1080,78 @@ body.matrix-mode #navbar {
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 18px;
 }
 
+/* Layout: icons side-by-side and aligned to the right edge of the column */
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  gap: 12px;
+  padding: 0;
+  background: transparent;
 }
 
-.contact-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
+.contact-links {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important;
+  align-items: center !important;
+  justify-content: space-between !important; /* one left, one right */
+  width: 100% !important;
 }
 
+/* Icons: cyan color, no background overlay on hover, larger sizes */
+.contact-link {
+  color: var(--primary-color) !important; /* always cyan */
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+/* Prevent hover from painting the whole icon - keep color steady */
+.contact-link:hover,
+.contact-link:focus {
+  background: transparent !important;
+  color: var(--primary-color) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: none !important;
+}
+
+/* Large responsive SVG icons that can extend almost to the right edge */
+.contact-svg {
+  width: 48% !important; /* slightly wider so icons feel larger */
+  max-width: 960px !important; /* triple the previous 320px */
+  height: auto !important;
+  display: inline-block !important;
+}
+
+@media (min-width: 900px) {
+  .contact-svg {
+    width: 48% !important;
+    max-width: 1200px !important; /* large but capped to avoid extreme overflow (3x540~=1620, cap at 1200) */
+  }
+}
+
+/* Right icon should have the standard container right padding (20px) */
+.contact-links .contact-link:last-child {
+  padding-right: 20px !important;
+}
+
+/* Small screens: allow svg to be a bit smaller to avoid overflow */
+@media (max-width: 480px) {
+  .contact-svg {
+    width: 960px !important; /* triple of 320 */
+    max-width: 960px !important;
+  }
+}
+
+/* ensure any <i> fallback stays cyan */
 .contact-item i {
-  color: var(--primary-color);
-  font-size: 1.2rem;
+  color: var(--primary-color) !important;
+  font-size: 1.2rem !important;
 }
 
 /* ============= TERMINAL OVERLAY ============= */
@@ -1038,7 +1169,7 @@ body.matrix-mode #navbar {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  pointer-events: none; /* Prevent blocking pointer events when hidden */
+  pointer-events: none;
 }
 
 .terminal-overlay.active {

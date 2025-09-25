@@ -287,6 +287,107 @@ document.addEventListener('DOMContentLoaded', () => {
   startHeroTypewriter();
 });
 
+// =================== HERO CANVAS INTERACTIVE BACKGROUND ===================
+(() => {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = 0, height = 0;
+  const particles = [];
+  const PTR_COUNT = 60;
+  const mouse = { x: -9999, y: -9999 };
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = Math.max(1, Math.floor(width * dpr));
+    canvas.height = Math.max(1, Math.floor(height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function initParticles() {
+    particles.length = 0;
+    for (let i = 0; i < PTR_COUNT; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        r: 1 + Math.random() * 2
+      });
+    }
+  }
+
+  function update() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      // simple attraction to mouse
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const attraction = Math.min(60 / dist, 0.12);
+
+      p.vx += (dx / dist) * attraction * 0.02;
+      p.vy += (dy / dist) * attraction * 0.02;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // wrap
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+      if (p.y < -10) p.y = height + 10;
+      if (p.y > height + 10) p.y = -10;
+
+      // draw
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(0,245,255,0.12)';
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // draw subtle connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i];
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) { // distance threshold squared (~126px)
+          const alpha = 0.12 * (1 - d2 / 16000);
+          ctx.strokeStyle = `rgba(0,245,255,${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // events
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  // initialize
+  resize();
+  initParticles();
+  requestAnimationFrame(update);
+})();
+
 // =================== SNAKE GAME ===================
 class SnakeGame {
   constructor(canvasId) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio di Erik - ErikDev</title>
-  <link rel="stylesheet" href="style.css?v=5.0">
+  <link rel="stylesheet" href="style.css?v=6.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -51,6 +51,8 @@
       </div>
     </div>
     <div id="particles-js"></div>
+  <!-- Interactive hero canvas (React-independent) -->
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
     
     <!-- Scroll Indicator -->
     <div class="scroll-indicator">
@@ -288,18 +290,23 @@
         </div>
         
         <div class="contact-info">
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <span>erikmirashaj10@gmail.com</span>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <span>+39 328 446 6740</span>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Italia</span>
-          </div>
+            <!-- contact message removed per request -->
+            <div class="contact-item contact-links">
+                <a href="mailto:erikmirashaj10@gmail.com" class="contact-link" aria-label="Send email">
+                  <!-- Envelope SVG -->
+                  <svg class="contact-svg" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1h18v12H1z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+                    <path d="M1 1l9 7 9-7" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/erik-mirashaj" class="contact-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                  <!-- LinkedIn SVG -->
+                  <svg class="contact-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v12H0z" fill="currentColor"/>
+                    <path d="M8 8h4.8v1.6h.1c.7-1.2 2.4-2.5 4.9-2.5C22.3 7.1 24 9.1 24 13.3V20h-5v-6.1c0-1.4 0-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3v6.2H8V8z" fill="currentColor"/>
+                  </svg>
+                </a>
+            </div>
         </div>
       </div>
     </div>

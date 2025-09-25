@@ -36,6 +36,77 @@ section, main, header, nav, div, .container {
   transform: translateY(-4px);
 }
 
+/* Contact box: each contact entry gets its own card */
+
+.contact-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start; /* icon + text aligned to the left */
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(0,255,200,0.08);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin: 10px 0;
+  max-width: 100%; /* allow box to expand but not exceed container */
+  width: auto; /* size to content */
+  box-sizing: border-box;
+}
+
+/* Prevent the LinkedIn link from breaking onto multiple lines */
+.contact-link--nowrap {
+  white-space: nowrap !important;
+  display: inline-block !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* Icon + text helpers for contact links */
+.contact-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-icon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--primary-color);
+  opacity: 0.95;
+}
+
+.contact-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Reinforce no-wrap for anchor and icon+text combos */
+.contact-box .contact-link,
+.contact-box .contact-with-icon,
+.contact-box .contact-text {
+  white-space: nowrap !important;
+}
+
+/* Allow the contact boxes to sit flush left inside .contact-info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+/* Make sure the icon doesn't push the link to wrap on very small screens; shrink text instead */
+@media (max-width: 360px) {
+  .contact-text {
+    font-size: 0.86rem;
+  }
+}
+
+/* Ensure contact links inside their boxes stack nicely on small screens */
+.contact-info .contact-box + .contact-box {
+  margin-top: 12px;
+}
+
 .contact-message {
   margin-top: 8px;
   color: var(--text-light);
@@ -555,6 +626,30 @@ body.matrix-mode #navbar {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+/* Overrides for text-based contact links inside the contact boxes
+   Some earlier rules set .contact-link to a small square for icon-only buttons
+   — override those here so icon + text stay on one line. */
+.contact-box .contact-links {
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.contact-box .contact-link {
+  width: auto !important;
+  height: auto !important;
+  padding: 6px 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  justify-content: flex-start !important;
+  background: rgba(255,255,255,0.03) !important;
+  font-size: 1rem !important;
+}
+
+.contact-box .contact-text {
+  white-space: nowrap !important;
 }
 
 .contact-link {
@@ -1094,10 +1189,10 @@ body.matrix-mode #navbar {
 
 .contact-links {
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: column !important; /* stack vertically */
   gap: 12px !important;
-  align-items: center !important;
-  justify-content: space-between !important; /* one left, one right */
+  align-items: stretch !important;
+  justify-content: flex-start !important;
   width: 100% !important;
 }
 
@@ -1111,6 +1206,38 @@ body.matrix-mode #navbar {
   text-decoration: none !important;
 }
 
+/* Boxed contact variant (restored) */
+.contact-links {
+  display: flex !important;
+  flex-direction: column !important; /* stack vertically */
+  gap: 12px !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+}
+
+/* Box that wraps contact links */
+.contact-box {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  padding: 18px !important;
+  border-radius: 14px !important;
+  max-width: 420px !important;
+}
+
+.contact-link {
+  color: var(--text-light) !important; /* plain text color */
+  background: transparent !important;
+  padding: 8px 0 !important;
+  border-radius: 0 !important;
+  display: block !important;
+  text-decoration: none !important;
+  font-size: 1rem !important;
+}
+
+/* hide any leftover svg rules to ensure text-only layout */
+.contact-svg { display: none !important; }
+
 /* Prevent hover from painting the whole icon - keep color steady */
 .contact-link:hover,
 .contact-link:focus {
@@ -1120,18 +1247,24 @@ body.matrix-mode #navbar {
   box-shadow: none !important;
 }
 
-/* Large responsive SVG icons that can extend almost to the right edge */
-.contact-svg {
-  width: 48% !important; /* slightly wider so icons feel larger */
-  max-width: 960px !important; /* triple the previous 320px */
-  height: auto !important;
-  display: inline-block !important;
+/* Contact icons: responsive, constrained, and non-intrusive to layout */
+.contact-links {
+  /* ensure icons don't force the container wider */
+  max-width: 100%;
+  flex-wrap: nowrap;
 }
 
-@media (min-width: 900px) {
+.contact-svg {
+  width: auto !important; /* keep intrinsic aspect ratio */
+  max-width: clamp(432px, 12vw, 1080px) !important; /* larger: 3x the earlier 144/360 */
+  height: auto !important;
+  display: block !important;
+  flex: 0 0 auto !important;
+}
+
+@media (min-width: 1200px) {
   .contact-svg {
-    width: 48% !important;
-    max-width: 1200px !important; /* large but capped to avoid extreme overflow (3x540~=1620, cap at 1200) */
+    max-width: clamp(720px, 18vw, 1440px) !important; /* larger on wide screens */
   }
 }
 
@@ -1140,11 +1273,10 @@ body.matrix-mode #navbar {
   padding-right: 20px !important;
 }
 
-/* Small screens: allow svg to be a bit smaller to avoid overflow */
+/* Small screens: keep icons large but bounded so they don't overflow */
 @media (max-width: 480px) {
   .contact-svg {
-    width: 960px !important; /* triple of 320 */
-    max-width: 960px !important;
+    max-width: clamp(360px, 30vw, 576px) !important; /* larger mobile cap */
   }
 }
 

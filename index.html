@@ -3,31 +3,354 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio di Erik</title>
-  <link rel="stylesheet" href="style.css?v=20250727165207">
+  <title>Portfolio di Erik - ErikDev</title>
+  <link rel="stylesheet" href="style.css?v=5.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <div class="brand">ErikDev</div>
-    <div>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <!-- Custom Cursor -->
+  <!-- React root (Cursor is rendered by React) -->
+  <!-- Static cursor elements removed to avoid duplication with React component -->
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="brand">
+      <span class="glitch" data-text="ErikDev">ErikDev</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <div class="terminal-toggle">
+        <i class="fas fa-terminal"></i>
+      </div>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>👋 Ciao, sono Erik</h1>
-      <p>Sviluppatore Web in crescita. Sto costruendo nuovi progetti, presto online!</p>
-      <a href="#contact" class="btn">Contattami</a>
+  <!-- Hero Section with Particles & Typing Animation -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="typing-text">
+          <span class="wave">👋</span> Ciao, sono <span class="highlight">Erik</span>
+        </h1>
+        <p class="typing-subtitle">
+          <span class="typewriter"></span>
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">Vedi i miei progetti</a>
+          <a href="#contact" class="btn secondary">Contattami</a>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
     </div>
     <div id="particles-js"></div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-text">Scroll per esplorare</div>
+      <div class="scroll-arrow">↓</div>
+    </div>
   </section>
 
-  <!-- particles.js library -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- About Section with Developer Journey Timeline -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title glitch" data-text="About Me">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p class="fade-in">Sono un <strong>sviluppatore web</strong> appassionato con una forte dedizione per creare esperienze digitali uniche e funzionali.</p>
+          <p class="fade-in">Il mio percorso nel mondo della programmazione è iniziato con curiosità e si è trasformato in passione pura.</p>
+        </div>
+        
+        <!-- Developer Journey Timeline -->
+        <div class="timeline">
+          <div class="timeline-item" data-year="2022">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Primo "Hello World"</h3>
+              <p>Il momento che ha cambiato tutto...</p>
+              <code>console.log("Hello World!");</code>
+            </div>
+          </div>
+          <div class="timeline-item" data-year="2023">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Prime Web App</h3>
+              <p>HTML, CSS e JavaScript diventano i miei migliori amici</p>
+              <code>document.querySelector('.dream').click();</code>
+            </div>
+          </div>
+          <div class="timeline-item" data-year="2024">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Framework & Librerie</h3>
+              <p>React, Node.js e il mondo si apre</p>
+              <code>const future = await buildAmazingThings();</code>
+            </div>
+          </div>
+          <div class="timeline-item" data-year="2025">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>Portfolio Avanzato</h3>
+              <p>Quello che stai vedendo ora!</p>
+              <code>erik.showSkills().then(impress);</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section with Live Coding Animation -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <h2 class="section-title">Le Mie Competenze</h2>
+      
+      <!-- Live Coding Animation -->
+      <div class="live-coding">
+        <div class="code-header">
+          <div class="window-controls">
+            <span class="control close"></span>
+            <span class="control minimize"></span>
+            <span class="control maximize"></span>
+          </div>
+          <span class="file-name">erik-skills.js</span>
+        </div>
+        <div class="code-content">
+          <pre class="code-output"></pre>
+          <span class="cursor-blink">|</span>
+        </div>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="skills-grid">
+        <div class="skill-category frontend">
+          <h3><i class="fas fa-paint-brush"></i> Frontend</h3>
+          <div class="skills-list">
+            <span class="skill">HTML5</span>
+            <span class="skill">CSS3</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">React</span>
+            <span class="skill">Next.js</span>
+          </div>
+        </div>
+        <div class="skill-category backend">
+          <h3><i class="fas fa-server"></i> Backend</h3>
+          <div class="skills-list">
+            <span class="skill">Python</span>
+            <span class="skill">Node.js</span>
+            <span class="skill">Java</span>
+            <span class="skill">C</span>
+            <span class="skill">SQL</span>
+            <span class="skill">Flask</span>
+          </div>
+        </div>
+        <div class="skill-category tools">
+          <h3><i class="fas fa-tools"></i> Tools</h3>
+          <div class="skills-list">
+            <span class="skill">Git</span>
+            <span class="skill">Figma</span>
+            <span class="skill">AWS</span>
+            <span class="skill">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section with Mini-Game -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">I Miei Progetti</h2>
+      
+      <!-- Mini-game removed -->
+
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">🌐</div>
+          </div>
+          <div class="project-content">
+            <h3>Portfolio Website</h3>
+            <p>Il sito che stai vedendo ora, con animazioni avanzate e effetti interattivi</p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">⚡</div>
+          </div>
+          <div class="project-content">
+            <h3>Task Manager App</h3>
+            <p>App per gestione attività con drag & drop e real-time updates</p>
+            <div class="project-tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>MongoDB</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">🛒</div>
+          </div>
+          <div class="project-content">
+            <h3>E-commerce Platform</h3>
+            <p>Piattaforma e-commerce completa con payment integration</p>
+            <div class="project-tech">
+              <span>Vue.js</span>
+              <span>Express</span>
+              <span>Stripe</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+              <a href="#" class="project-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section with Console Integration -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="section-title">Lavoriamo Insieme</h2>
+      
+      <!-- Interactive Console -->
+      <div class="interactive-console">
+        <div class="console-header">
+          <div class="window-controls">
+            <span class="control close"></span>
+            <span class="control minimize"></span>
+            <span class="control maximize"></span>
+          </div>
+          <span class="console-title">Erik Console</span>
+        </div>
+        <div class="console-body">
+          <div class="console-output">
+            <div class="console-line">
+              <span class="prompt">erik@portfolio:~$</span>
+              <span class="command">welcome</span>
+            </div>
+            <div class="console-response">
+              Benvenuto nella mia console interattiva!<br>
+              Prova questi comandi: <span class="highlight">help</span>, <span class="highlight">about</span>, <span class="highlight">skills</span>, <span class="highlight">hire</span>
+            </div>
+          </div>
+          <div class="console-input-line">
+            <span class="prompt">erik@portfolio:~$</span>
+            <input type="text" class="console-input" placeholder="Scrivi un comando..." autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-content">
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" id="name" name="name" required>
+              <label for="name">Il tuo nome</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" required>
+              <label for="email">La tua email</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" required></textarea>
+              <label for="message">Il tuo messaggio</label>
+            </div>
+            <button type="submit" class="btn primary">Invia Messaggio</button>
+          </form>
+        </div>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>erikmirashaj10@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+39 328 446 6740</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Italia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terminal Overlay -->
+  <div class="terminal-overlay">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="window-controls">
+          <span class="control close terminal-close"></span>
+          <span class="control minimize"></span>
+          <span class="control maximize"></span>
+        </div>
+        <span class="terminal-title">Erik Terminal</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-output">
+          <div class="terminal-line">
+            <span class="prompt">erik@portfolio:~$</span>
+            <span class="command">help</span>
+          </div>
+          <div class="terminal-response">
+            Available commands:<br>
+            - <span class="highlight">about</span>     : Chi sono<br>
+            - <span class="highlight">skills</span>    : Le mie competenze<br>
+            - <span class="highlight">projects</span>  : I miei progetti<br>
+            - <span class="highlight">contact</span>   : Come contattarmi<br>
+            - <span class="highlight">clear</span>     : Pulisci schermo<br>
+            - <span class="highlight">matrix</span>    : Modalità Matrix<br>
+            - <span class="highlight">konami</span>    : Easter egg speciale
+          </div>
+        </div>
+        <div class="terminal-input-line">
+          <span class="prompt">erik@portfolio:~$</span>
+          <input type="text" class="terminal-input" placeholder="Scrivi un comando..." autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" 
+          onerror="console.error('Failed to load particles.js from CDN, trying fallback...'); 
+                   var script = document.createElement('script'); 
+                   script.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js'; 
+                   document.head.appendChild(script);">
+  </script>
+  <!-- React mounts into #root -->
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
   <script src="script.js"></script>
 </body>
 </html>

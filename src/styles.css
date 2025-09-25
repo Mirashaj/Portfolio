@@ -1,0 +1,188 @@
+/* Forza overflow visibile su tutte le sezioni principali per il cursore */
+section, main, header, nav, div, .container {
+  overflow: visible !important;
+}
+/* Forza la visibilità del cursore in tutte le sezioni */
+.cursor, .cursor-follower {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+/* ============= GLOBAL STYLES ============= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #00f5ff;
+  --secondary-color: #ff6b6b;
+  --accent-color: #4ecdc4;
+  --bg-dark: #0a0a0a;
+  --bg-darker: #050505;
+  --text-light: #ffffff;
+  --text-gray: #b0b0b0;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #00f5ff 0%, #4ecdc4 100%);
+  --gradient-3: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: visible !important;
+  cursor: none !important;
+}
+
+a, button, .btn, .nav-link, .terminal-toggle, .project-link, .social-link, .contact-item, .skill, .project-card, input, textarea, select {
+  cursor: none !important;
+  pointer-events: auto !important;
+}
+
+/* Forza cursor none su tutti gli elementi */
+* {
+  cursor: none !important;
+}
+
+/* Assicura che nessun elemento limiti il cursore personalizzato */
+section, div, main, header, nav, .container, .hero-section, .hero-content {
+  overflow: visible !important;
+}
+
+/* In matrix mode, abbassa lo z-index di tutti gli overlay */
+body.matrix-mode .terminal-overlay,
+body.matrix-mode .modal,
+body.matrix-mode .popup,
+body.matrix-mode .overlay {
+  z-index: 9999990 !important;
+}
+
+/* Eccezioni per elementi che devono mantenere overflow hidden */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============= CUSTOM CURSOR ============= */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  position: fixed !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.cursor-follower {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: fixed !important;
+  pointer-events: none !important;
+  z-index: 2147483646 !important;
+  transition: transform 0.15s ease;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Matrix mode cursor fix - COMPLETO */
+body.matrix-mode .cursor {
+  border-color: #00ff41 !important;
+  box-shadow: 0 0 15px #00ff41 !important;
+  mix-blend-mode: normal !important;
+  z-index: 2147483647 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  /* Rimuovi qualsiasi limite di overflow */
+  clip: auto !important;
+  overflow: visible !important;
+  /* Force libera movement su tutta la pagina */
+  contain: none !important;
+  isolation: auto !important;
+  transform-style: flat !important;
+}
+
+body.matrix-mode .cursor-follower {
+  background: #00ff41 !important;
+  box-shadow: 0 0 10px #00ff41 !important;
+  z-index: 2147483646 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  /* Rimuovi qualsiasi limite di overflow */
+  clip: auto !important;
+  overflow: visible !important;
+  /* Force libera movement su tutta la pagina */
+  contain: none !important;
+  isolation: auto !important;
+  transform-style: flat !important;
+}
+
+/* Assicura cursor none in modalità matrix */
+body.matrix-mode *,
+body[style*="hue-rotate"] * {
+  cursor: none !important;
+}
+
+/* Assicura che il cursore funzioni su tutta la pagina in modalità matrix */
+body.matrix-mode {
+  overflow: visible !important;
+  /* Rimuovi tutti i limiti che potrebbero bloccare il cursore */
+  contain: none !important;
+  clip-path: none !important;
+  clip: auto !important;
+  /* Forza il cursore a essere sempre visibile e libero */
+  isolation: auto !important;
+}
+
+/* Forza overflow visible su TUTTI gli elementi in modalità matrix */
+body.matrix-mode *:not(.cursor):not(.cursor-follower) {
+  overflow: visible !important;
+  contain: none !important;
+  clip-path: none !important;
+  clip: auto !important;
+  pointer-events: auto;
+  /* Rimuovi tutti i vincoli di posizionamento */
+  isolation: auto !important;
+}
+
+/* Rimuovi tutti i limiti di overflow che potrebbero bloccare il cursore */
+body.matrix-mode section,
+body.matrix-mode div,
+body.matrix-mode main,
+body.matrix-mode header,
+body.matrix-mode nav,
+body.matrix-mode .container,
+body.matrix-mode .hero,
+body.matrix-mode .hero-content,
+body.matrix-mode .hero-section {
+  overflow: visible !important;
+  contain: none !important;
+  clip-path: none !important;
+  clip: auto !important;
+  isolation: auto !important;
+}
+
+/* Assicura che il cursore possa muoversi liberamente su tutta la viewport */
+/* Let the JS toggle positioning (fixed vs absolute) to handle scrolling correctly */
